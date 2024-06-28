@@ -1,11 +1,39 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import styles from "./index.module.scss"
+import cn from "classnames";
+import { NextPage } from "next";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
-const inter = Inter({ subsets: ["latin"] });
+const Home: NextPage = () => {
+  const router = useRouter();
 
-export default function Home() {
+  const [isEnableText3, setIsEnablText3] = useState(false);
+  console.log(isEnableText3);
+
+  const sum = (num1: number, num2: number) => {
+    return num1 + num2;
+  };
+
+  const sum2 = (num1: number, num2: number) => num1 + num2;
+  console.log(sum(2,3));
+  console.log(sum(5,6));
+
+  const students = [
+    { id: 1, name: "一郎", age: 16 },
+    { id: 2, name: "二郎", age: 15 },
+    { id: 3, name: "三郎", age: 14 },
+  ];
+
+  const ageList = students.map((elem) => elem.age)
+
+  const ageList2 = students.map((elem, index) => {
+    return elem.age
+  })
+
+  console.log(ageList);
+
+
   return (
     <>
       <Head>
@@ -14,101 +42,33 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{" "}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+      <div className={styles.container}>
+        こんにちは
+        <div className={styles.container__text1}>
+          test
+        </div>
+        <div className={cn(styles.container__text1, styles.container__text2, {
+            [styles.container__text3]: isEnableText3,
+            [styles.container__text4]: false
+          })}>
+          test2
+        </div>
+        <button onClick={() => setIsEnablText3(!isEnableText3)}>
+          テキスト３有効化ボタン
+        </button>
+
+        <button onClick={() => router.push("/login")}>
+          ログインページへ
+        </button>
+
+        {students.map((elem) => (
+          <div key={elem.id}>
+            <div>名前：{elem.name}</div>
+            <div>年齢：{elem.age}</div>
           </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+        ))}
+      </div>
     </>
   );
 }
+export default Home
