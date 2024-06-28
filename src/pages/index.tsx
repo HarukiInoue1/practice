@@ -61,6 +61,10 @@ const Home: NextPage = () => {
           ログインページへ
         </button>
 
+        <button onClick={() => router.push("/test")}>
+          テストページへ
+        </button>
+
         {students.map((elem) => (
           <div key={elem.id}>
             <div>名前：{elem.name}</div>
