@@ -1,17 +1,61 @@
 import Head from "next/head";
-import styles from "./index.module.scss"
-import cn from "classnames";
+import styles from "./index.module.scss";
 import { NextPage } from "next";
-import { useState } from "react";
 import { useRouter } from "next/router";
 
+// 関数コンポーネント、アッパーキャメルケース
 const Home: NextPage = () => {
-  const [isEnableText3, setIsEnablText3] = useState(false);
-  console.log(isEnableText3);
-
   const router = useRouter();
 
+  const greeting = (userName: string) => `Hello, ${userName}!`;
+
+  console.log(greeting("tarou"));
+
+  const greeting2 = (userName2: string, greetingType: String) => {
+    let greet: string;
+    if (greetingType === "morning") {
+      greet = "おはよう";
+    } else if (greetingType === "night") {
+      greet = "こんばんは";
+    } else {
+      greet = "こんにちは";
+    }
+    return `${userName2}, ${greet}`;
+  };
+
+  console.log(greeting2("二郎", "morning"));
+
+  const students: {
+    id: number;
+    name: string;
+    age: number;
+    prefecture: string;
+    jobHunt: boolean;
+  }[] = [
+    { id: 1, name: "太郎", age: 28, prefecture: "石川県", jobHunt: false },
+    { id: 2, name: "花子", age: 26, prefecture: "大阪府", jobHunt: true },
+    { id: 3, name: "二郎", age: 25, prefecture: "北海道", jobHunt: false },
+  ];
+
+  const introductions = students.map((student) => {
+    return `はじめまして。${student.name}と申します。${
+      student.prefecture
+    }出身で、今年で${student.age}歳になります。就職先は${
+      student.jobHunt ? "決まりました" : "まだ決まっていません"
+    }。`;
+  });
+
+  introductions.forEach((intro) => {
+    console.log(intro);
+  });
+
+  const tsxStyle = {
+    fontsize:10,
+    color:'red'
+  }
+
   return (
+    // reactフラグメント省略形式
     <>
       <Head>
         <title>Create Next App</title>
@@ -19,13 +63,25 @@ const Home: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* classは予約語なので使えない,最上位に１つの要素が必要なのでdiv */}
       <div className={styles.container}>
         <h1 className={styles.container__test}>テスト用</h1>
-        <button onClick={() => router.push("../")} className={styles.container__button}>
+        <button
+          onClick={() => router.push("../")}
+          className={styles.container__button}
+        >
           TOPページに戻ります
         </button>
+
+        {students.map((student) => (
+            <p style={tsxStyle}>
+              はじめまして。{student.name}と申します。{student.age}歳です。
+              {student.prefecture}出身です。就職活動は
+              {student.jobHunt ? "終わりました" : "まだ続けています"}。
+            </p>
+        ))}
       </div>
     </>
   );
-}
-export default Home
+};
+export default Home;

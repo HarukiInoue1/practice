@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 import cn from "classnames";
 import { NextPage } from "next";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 const Home: NextPage = () => {
   const router = useRouter();
 
-  const [isEnableText3, setIsEnablText3] = useState(false);
+  const [isEnableText3, setIsEnableText3] = useState(false);
   console.log(isEnableText3);
 
   const sum = (num1: number, num2: number) => {
@@ -16,8 +16,9 @@ const Home: NextPage = () => {
   };
 
   const sum2 = (num1: number, num2: number) => num1 + num2;
-  console.log(sum(2,3));
-  console.log(sum(5,6));
+
+  console.log(sum(5, 6));
+  console.log(sum2(2, 3));
 
   const students = [
     { id: 1, name: "一郎", age: 16 },
@@ -25,14 +26,13 @@ const Home: NextPage = () => {
     { id: 3, name: "三郎", age: 14 },
   ];
 
-  const ageList = students.map((elem) => elem.age)
+  const ageList = students.map((elem) => elem.age);
 
   const ageList2 = students.map((elem, index) => {
-    return elem.age
-  })
+    return elem.age;
+  });
 
   console.log(ageList);
-
 
   return (
     <>
@@ -44,27 +44,20 @@ const Home: NextPage = () => {
       </Head>
       <div className={styles.container}>
         こんにちは
-        <div className={styles.container__text1}>
-          test
-        </div>
-        <div className={cn(styles.container__text1, styles.container__text2, {
+        <div className={styles.container__text1}>test</div>
+        <div
+          className={cn(styles.container__text1, styles.container__text2, {
             [styles.container__text3]: isEnableText3,
-            [styles.container__text4]: false
-          })}>
+            [styles.container__text4]: false,
+          })}
+        >
           test2
         </div>
-        <button onClick={() => setIsEnablText3(!isEnableText3)}>
+        <button onClick={() => setIsEnableText3(!isEnableText3)}>
           テキスト３有効化ボタン
         </button>
-
-        <button onClick={() => router.push("/login")}>
-          ログインページへ
-        </button>
-
-        <button onClick={() => router.push("/test")}>
-          テストページへ
-        </button>
-
+        <button onClick={() => router.push("/login")}>ログインページへ</button>
+        <button onClick={() => router.push("/test")}>テストページへ</button>
         {students.map((elem) => (
           <div key={elem.id}>
             <div>名前：{elem.name}</div>
@@ -74,5 +67,5 @@ const Home: NextPage = () => {
       </div>
     </>
   );
-}
-export default Home
+};
+export default Home;
