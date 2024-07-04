@@ -1,6 +1,9 @@
 import Head from "next/head";
 import styles from "./index.module.scss";
+//  デフォルトエクスポートだから名前指定はなんでもいい
+import cn from "classnames";
 import { NextPage } from "next";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 // 関数コンポーネント、アッパーキャメルケース
@@ -49,10 +52,24 @@ const Home: NextPage = () => {
     console.log(intro);
   });
 
-  const tsxStyle = {
-    fontsize:10,
-    color:'red'
-  }
+  const teachers:{
+    id:number, teacherName:string, age:number
+  } []= [
+    {id:1, teacherName:"佐藤", age:40},
+    {id:2, teacherName:"高橋", age:37},
+    {id:3, teacherName:"井上", age:30},
+  ]
+
+  const teacherNameList = teachers.map((tname)=>{
+    return tname.teacherName
+  });
+
+  console.log(teacherNameList);
+  
+
+  const [changeBackGround, setChangeBackGround] = useState(false);
+
+  const[changeColor, setChangeColor] = useState(false);
 
   return (
     // reactフラグメント省略形式
@@ -64,7 +81,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* classは予約語なので使えない,最上位に１つの要素が必要なのでdiv */}
-      <div className={styles.container}>
+      <div
+        className={cn(styles.container, {
+          [styles.container__background]: changeBackGround,
+        })}
+      >
         <h1 className={styles.container__test}>テスト用</h1>
         <button
           onClick={() => router.push("../")}
@@ -73,12 +94,20 @@ const Home: NextPage = () => {
           TOPページに戻ります
         </button>
 
+        <button onClick={() => setChangeBackGround(!changeBackGround)}>
+          背景色変更ボタン
+        </button>
+
+        <button onClick={()=> setChangeColor(!changeColor)}>文字色変更ボタン</button>
+
         {students.map((student) => (
-            <p style={tsxStyle}>
-              はじめまして。{student.name}と申します。{student.age}歳です。
-              {student.prefecture}出身です。就職活動は
-              {student.jobHunt ? "終わりました" : "まだ続けています"}。
-            </p>
+          <p className={cn({
+            [styles.container__textColor]: changeColor
+          })}>
+            はじめまして。{student.name}と申します。{student.age}歳です。
+            {student.prefecture}出身です。就職活動は
+            {student.jobHunt ? "終わりました" : "まだ続けています"}。
+          </p>
         ))}
       </div>
     </>

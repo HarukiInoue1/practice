@@ -9,7 +9,8 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   const [isEnableText3, setIsEnableText3] = useState(false);
-  console.log(isEnableText3);
+  
+  const [isEnableText4, setIsEnableText4] = useState(true);
 
   const sum = (num1: number, num2: number) => {
     return num1 + num2;
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
   const sum2 = (num1: number, num2: number) => num1 + num2;
 
   console.log(sum(5, 6));
+
   console.log(sum2(2, 3));
 
   const students = [
@@ -46,15 +48,20 @@ const Home: NextPage = () => {
         こんにちは
         <div className={styles.container__text1}>test</div>
         <div
+        // 動的なクラスであるisEnableTextの管理
           className={cn(styles.container__text1, styles.container__text2, {
             [styles.container__text3]: isEnableText3,
-            [styles.container__text4]: false,
+            [styles.container__text4]: isEnableText4,
           })}
         >
           test2
         </div>
+        {/* setIsEnableText3を呼び出し、isEnableText3の現在の値を反転させ新しい状態として設定する */}
         <button onClick={() => setIsEnableText3(!isEnableText3)}>
           テキスト３有効化ボタン
+        </button>
+        <button onClick={() => setIsEnableText4(!isEnableText4)}>
+          テキスト４無効化ボタン
         </button>
         <button onClick={() => router.push("/login")}>ログインページへ</button>
         <button onClick={() => router.push("/test")}>テストページへ</button>
@@ -64,6 +71,10 @@ const Home: NextPage = () => {
             <div>年齢：{elem.age}</div>
           </div>
         ))}
+        <div>
+          {sum(1,5)}
+        </div>
+        <button onClick={()=> setIsEnableText3(!isEnableText3)}>a</button>
       </div>
     </>
   );
