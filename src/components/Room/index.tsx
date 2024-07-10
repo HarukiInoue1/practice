@@ -1,18 +1,41 @@
 import { FC } from "react";
+import { FavoriteButton } from "@/components/atoms/FavoriteButton";
+import { ContactButton } from "@/components/atoms/ContactButton";
+import { Link } from "@/components/atoms/Link"
 import Image from "next/image";
-import { useRouter } from "next/router";
 import styles from "./index.module.scss";
 
-type Props = { rent: number; isNew?: boolean };
-export const Room: FC<Props> = ({ rent, isNew = false }) => {
-  const router = useRouter();
+type Props = {
+  isNew?: boolean;
+  floor: number;
+  rent: number;
+  management:number;
+  deposit: number;
+  reward: number | string;
+  occupation: string;
+  layout: number;
+};
+export const Room: FC<Props> = ({
+  isNew = false,
+  floor,
+  rent,
+  management,
+  deposit,
+  reward,
+  occupation,
+  layout,
+}) => {
   // 括弧を使用することで、JSXのブロック全体が1つの式として扱われ、改行があっても正しく解釈される
   return (
     <tbody className={styles.room__table__body}>
       <tr>
-        <td className={styles.new}>
+        <td className={styles.new__wrapper}>
           {/* &&の右にuseStateを使う？ */}
-          {isNew && <p className={styles.new__inner}>新着</p>}
+          {isNew && (
+            <div className={styles.new}>
+              <p className={styles.new__inner}>新着</p>
+            </div>
+          )}
           <input type="checkbox" className={styles.checkbox} />
         </td>
         <td className={styles.room__wrapper}>
@@ -23,43 +46,33 @@ export const Room: FC<Props> = ({ rent, isNew = false }) => {
             className={styles.room_image}
           ></Image>
         </td>
-        <td>４階</td>
+        <td>{floor}階</td>
         <td>
           <span className={styles.room__table__body__text1}>{rent}万円</span>
           <br />
-          15000円
+          {management}円
         </td>
         <td>
           <p>
-            <span className={styles.room__table__body__text2}>敷</span> 14.1万円
+            <span className={styles.room__table__body__text2}>敷</span>{" "}
+            {deposit}万円
           </p>
           <p>
-            <span className={styles.room__table__body__text2}>礼</span> -
+            <span className={styles.room__table__body__text2}>礼</span> {reward}
+            万円
           </p>
         </td>
         <td>
-          1DK
+          {occupation}
           <br />
-          26.1㎡
+          {layout}㎡
         </td>
         <td>
-          <button className={styles.favorite__btn}>
-            <span className={styles.room__table__body__text3}>♡</span>
-            追加
-          </button>
+          <FavoriteButton />
         </td>
         <td>
-          <a href="#" className={styles.link}>
-            詳細を見る
-          </a>
-          <button
-            onClick={() => router.push("/")}
-            className={styles.contact__btn}
-          >
-            お問い合わせ
-            <br />
-            (無料)
-          </button>
+          <Link />
+          <ContactButton />
         </td>
       </tr>
     </tbody>

@@ -6,31 +6,10 @@
     width: 150px;
     height: 150px;
     border: 1px solid #e0e0e0;
+    margin: 50px;
   }
 
   &__table {
-    width: 100%;
-    border-collapse: collapse;
-
-    td {
-      text-align: center;
-      padding: 10px;
-    }
-
-    &__head,
-    &__body {
-      list-style: none;
-      padding: 10px;
-    }
-
-    &__head {
-      background-color: #eee;
-      color: #a0a0a0;
-      font-weight: normal;
-      text-align: center;
-      display: table-row;
-    }
-
     &__body {
       display: table-row-group;
       border-bottom: 1px solid #d9d9d9;
@@ -44,25 +23,30 @@
         height: 30px;
       }
 
-      .new {
+      .new__wrapper {
         position: relative;
-        &__inner {
+
+        .new {
           position: absolute;
-          top: 3px;
-          left: 0;
-          color: #fff;
-          transform: rotate(-45deg);
-        }
-        &::before {
-          content: "";
-          position: absolute;
+          width: auto;
           top: 0;
-          right: 12px;
-          width: 0;
-          height: 0;
-          border-style: solid;
-          border-width: 50px 50px 0 0;
-          border-color: #f82055 transparent transparent transparent;
+          left: 0;
+          &__inner {
+            padding-top: 5px;
+            color: #fff;
+            transform: rotate(-45deg);
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 50px 50px 0 0;
+            border-color: #f82055 transparent transparent transparent;
+          }
         }
       }
 
@@ -78,33 +62,7 @@
         background-color: gray;
         padding: 2px;
       }
-
-      &__text3 {
-        color: #fb8e8c;
-      }
     }
   }
 }
 
-.link {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.favorite__btn {
-  border: 1px solid #e0e0e0;
-  border-bottom: 3px solid #ddd;
-  border-radius: 5px;
-  padding: 5px 5px 2px;
-  font-weight: bold;
-}
-.contact__btn {
-  color: #fff;
-  background-color: #f37e01;
-  padding: 8px;
-  border-bottom: 3px solid #e15f00;
-  border-radius: 5px;
-  font-weight: bold;
-  box-shadow: 2px 4px rgb(244, 244, 244);
-}
