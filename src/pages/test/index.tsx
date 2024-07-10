@@ -10,67 +10,37 @@ import { useRouter } from "next/router";
 const Home: NextPage = () => {
   const router = useRouter();
 
-  const greeting = (userName: string) => `Hello, ${userName}!`;
-
-  console.log(greeting("tarou"));
-
-  const greeting2 = (userName2: string, greetingType: String) => {
-    let greet: string;
-    if (greetingType === "morning") {
-      greet = "おはよう";
-    } else if (greetingType === "night") {
-      greet = "こんばんは";
-    } else {
-      greet = "こんにちは";
-    }
-    return `${userName2}, ${greet}`;
-  };
-
-  console.log(greeting2("二郎", "morning"));
-
-  const students: {
-    id: number;
-    name: string;
-    age: number;
-    prefecture: string;
-    jobHunt: boolean;
-  }[] = [
-    { id: 1, name: "太郎", age: 28, prefecture: "石川県", jobHunt: false },
-    { id: 2, name: "花子", age: 26, prefecture: "大阪府", jobHunt: true },
-    { id: 3, name: "二郎", age: 25, prefecture: "北海道", jobHunt: false },
-  ];
-
-  const introductions = students.map((student) => {
-    return `はじめまして。${student.name}と申します。${
-      student.prefecture
-    }出身で、今年で${student.age}歳になります。就職先は${
-      student.jobHunt ? "決まりました" : "まだ決まっていません"
-    }。`;
-  });
-
-  introductions.forEach((intro) => {
-    console.log(intro);
-  });
-
-  const teachers:{
-    id:number, teacherName:string, age:number
-  } []= [
-    {id:1, teacherName:"佐藤", age:40},
-    {id:2, teacherName:"高橋", age:37},
-    {id:3, teacherName:"井上", age:30},
-  ]
-
-  const teacherNameList = teachers.map((tname)=>{
-    return tname.teacherName
-  });
-
-  console.log(teacherNameList);
-  
-
   const [changeBackGround, setChangeBackGround] = useState(false);
 
-  const[changeColor, setChangeColor] = useState(false);
+  const [changeColor, setChangeColor] = useState(false);
 
+  const [changeFontSize, setChangeFontSize] = useState(false);
+
+  type Student = {
+    id: number;
+    name: string;
+    prefecture: string;
+    age: number;
+    height: number;
+  };
+
+  const students: Student[] = [
+    { id: 1, name: "太郎", prefecture: "愛知県", age: 27, height: 160 },
+    { id: 2, name: "花子", prefecture: "京都府", age: 28, height: 155 },
+    { id: 3, name: "二郎", prefecture: "広島県", age: 24, height: 165 },
+    { id: 4, name: "三郎", prefecture: "福井県", age: 22, height: 170 },
+  ];
+
+  const users = [
+    { name: "John", age: 30 },
+    { name: "Jane", age: 25 },
+    { name: "Jack", age: 35 },
+  ];
+
+  const [count, setCount] = useState(0);
+
+  const plusClick = () => setCount(count + 1);
+  const minusClick = () => setCount(count - 1);
   return (
     // reactフラグメント省略形式
     <>
@@ -80,12 +50,20 @@ const Home: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* classは予約語なので使えない,最上位に１つの要素が必要なのでdiv */}
+      {/* classは予約語なので使えない */}
       <div
         className={cn(styles.container, {
           [styles.container__background]: changeBackGround,
         })}
       >
+        <div
+          className={cn({
+            [styles.sample__text]: changeFontSize,
+          })}
+        >
+          sample text
+        </div>
+        <div className=""></div>
         <h1 className={styles.container__test}>テスト用</h1>
         <button
           onClick={() => router.push("../")}
@@ -98,16 +76,24 @@ const Home: NextPage = () => {
           背景色変更ボタン
         </button>
 
-        <button onClick={()=> setChangeColor(!changeColor)}>文字色変更ボタン</button>
+        <button onClick={() => setChangeColor(!changeColor)}>
+          文字色変更ボタン
+        </button>
 
-        {students.map((student) => (
-          <p className={cn({
-            [styles.container__textColor]: changeColor
-          })}>
-            はじめまして。{student.name}と申します。{student.age}歳です。
-            {student.prefecture}出身です。就職活動は
-            {student.jobHunt ? "終わりました" : "まだ続けています"}。
-          </p>
+        <button onClick={() => setChangeFontSize(!changeFontSize)}>文字サイズ変更ボタン</button>
+
+        <div>{count}</div>
+        <button onClick={plusClick}>+</button>
+        <button onClick={minusClick}>-</button>
+
+        {students.map(({ id, name, prefecture, age, height }) => (
+          <div key={id}>
+            <p>
+              こんにちは！{name}と申します。{prefecture}出身で、
+              {age}歳です。身長は{height}
+              cmです。よろしくお願いします！
+            </p>
+          </div>
         ))}
       </div>
     </>

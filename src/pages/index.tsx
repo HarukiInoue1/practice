@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "./index.module.scss";
 import cn from "classnames";
+import { CheckBox } from "@/components/atoms/CheckBox";
 import { NextPage } from "next";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -8,6 +9,7 @@ import { useRouter } from "next/router";
 const Home: NextPage = () => {
   const router = useRouter();
 
+  // let isEnableText3 = false;, 
   const [isEnableText3, setIsEnableText3] = useState(false);
   
   const [isEnableText4, setIsEnableText4] = useState(true);
@@ -28,13 +30,14 @@ const Home: NextPage = () => {
     { id: 3, name: "三郎", age: 14 },
   ];
 
+  const nameList = students.map((elem) => elem.name)
   const ageList = students.map((elem) => elem.age);
 
   const ageList2 = students.map((elem, index) => {
     return elem.age;
   });
 
-  console.log(ageList);
+  console.log(ageList,nameList);
 
   return (
     <>
@@ -45,6 +48,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
+        <CheckBox labelName="test"/>
         こんにちは
         <div className={styles.container__text1}>test</div>
         <div
@@ -65,6 +69,7 @@ const Home: NextPage = () => {
         </button>
         <button onClick={() => router.push("/login")}>ログインページへ</button>
         <button onClick={() => router.push("/test")}>テストページへ</button>
+        <button onClick={() => router.push("/suumo")}>Suumoページへ</button>
         {students.map((elem) => (
           <div key={elem.id}>
             <div>名前：{elem.name}</div>
@@ -74,7 +79,6 @@ const Home: NextPage = () => {
         <div>
           {sum(1,5)}
         </div>
-        <button onClick={()=> setIsEnableText3(!isEnableText3)}>a</button>
       </div>
     </>
   );
