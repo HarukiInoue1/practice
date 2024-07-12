@@ -34,12 +34,25 @@ const Home: NextPage = () => {
   const users = [
     { name: "John", age: 30 },
     { name: "Jane", age: 25 },
-    { name: "Jack", age: 35 },
-  ];
+    { name: "Jack", age: 35 }
+];
+
+// 例: `extractProperty(users, "name")` -> ["John", "Jane", "Jack"]
+
+const extractProperty = users.map((user) => user.name)
+  console.log(extractProperty)
+
+  const numbers = [10, 5, 20, 3, 7];
+
+// 例: [10, 5, 20, 3, 7] -> 3
+
+console.log(Math.min(...numbers))
+   
 
   const [count, setCount] = useState(0);
 
   const plusClick = () => setCount(count + 1);
+
   const minusClick = () => setCount(count - 1);
   return (
     // reactフラグメント省略形式
@@ -80,7 +93,9 @@ const Home: NextPage = () => {
           文字色変更ボタン
         </button>
 
-        <button onClick={() => setChangeFontSize(!changeFontSize)}>文字サイズ変更ボタン</button>
+        <button onClick={() => setChangeFontSize(!changeFontSize)}>
+          文字サイズ変更ボタン
+        </button>
 
         <div>{count}</div>
         <button onClick={plusClick}>+</button>

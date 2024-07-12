@@ -15,6 +15,7 @@ type Props = {
   occupation: string;
   layout: number;
 };
+// 関数コンポーネントであることを明示、propsの型を渡せるように　※明示しなくても可
 export const Room: FC<Props> = ({
   isNew = false,
   floor,
@@ -30,12 +31,12 @@ export const Room: FC<Props> = ({
     <tbody className={styles.room__table__body}>
       <tr>
         <td className={styles.new__wrapper}>
-          {/* &&の右にuseStateを使う？ */}
           {isNew && (
             <div className={styles.new}>
               <p className={styles.new__inner}>新着</p>
             </div>
           )}
+          {/* useStateでチェックボックスにチェックを入れたら、新着が着くように */}
           <input type="checkbox" className={styles.checkbox} />
         </td>
         <td className={styles.room__wrapper}>
@@ -44,7 +45,7 @@ export const Room: FC<Props> = ({
             alt="outlook"
             layout="fill"
             className={styles.room_image}
-          ></Image>
+          />
         </td>
         <td>{floor}階</td>
         <td>
@@ -68,6 +69,7 @@ export const Room: FC<Props> = ({
           {layout}㎡
         </td>
         <td>
+          {/* お問い合わせ有料ボタンもｐｒｏｐｓで作ってみる */}
           <FavoriteButton />
         </td>
         <td>

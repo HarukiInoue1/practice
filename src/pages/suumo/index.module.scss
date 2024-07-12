@@ -14,47 +14,6 @@
   margin-top: 10px;
 }
 
-.apartment {
-  padding: 0 20px;
-  margin: 0;
-  flex: 1;
-
-  h2 {
-    margin: 10px 0;
-  }
-
-  &__type {
-    display: inline-block;
-    font-size: 1rem;
-    color: #70ba2c;
-    border: #70ba2c 1px solid;
-    margin: 20px 0 0 0;
-    padding: 0 5px;
-  }
-
-  &__info {
-    border-top: 1px dotted #c2c2c2;
-    border-bottom: 1px dotted #c2c2c2;
-    display: flex;
-
-    &__child {
-      flex-grow: 1;
-      padding: 1rem;
-      margin: 5px 0;
-      &:first-child {
-        padding-left: 0;
-        border-right: 1px dotted #c2c2c2;
-      }
-      &:last-child {
-        border-left: 1px dotted #c2c2c2;
-      }
-      p {
-        margin-bottom: 0.5rem;
-      }
-    }
-  }
-}
-
 .room {
   margin-top: 30px;
 

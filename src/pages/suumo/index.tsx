@@ -3,6 +3,7 @@ import styles from "./index.module.scss";
 import "ress";
 import Image from "next/image";
 import { Room } from "@/components/Room";
+import { Apartment } from "@/components/Apartment";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
@@ -27,25 +28,7 @@ const Home: NextPage = () => {
               className={styles.outlook_image}
             />
           </div>
-          <div className={styles.apartment}>
-            <p className={styles.apartment__type}>賃貸マンション</p>
-            <h2>パークアクシス新宿百人町</h2>
-            <div className={styles.apartment__info}>
-              <p className={styles.apartment__info__child}>
-                東京都新宿区百人町3
-              </p>
-              <div className={styles.apartment__info__child}>
-                <p>JR中央線/大久保駅 歩6分</p>
-                <p>JR山手線/新大久保駅 歩9分</p>
-                <p>JR山手線/高田馬場駅 歩19分</p>
-              </div>
-              <p className={styles.apartment__info__child}>
-                新築
-                <br />
-                ７階建
-              </p>
-            </div>
-          </div>
+          <Apartment />
         </div>
         <div className={styles.room}>
           <table className={styles.room__table}>
@@ -61,9 +44,7 @@ const Home: NextPage = () => {
                 <td/>
               </tr>
             </thead>
-            {/* <Room rent={10000} isNew={default}/> */}
             <Room floor={3} rent={10} management={10000} deposit={10} reward=" - " occupation="1DK" layout={26.1}/>
-            {/* <Room rent={30000} isNew={true} /> */}
             <Room floor={4} rent={15} management={15000} isNew deposit={15} reward={15} occupation="1LDK" layout={28.5}/>
             <Room floor={4} rent={11.5} management={15000} deposit={11.5} reward={11.5} occupation="1DK" layout={24.8}/>
             <Room floor={6} rent={14} management={18000} isNew deposit={14} reward={14} occupation="1DK" layout={26.1}/>
