@@ -6,4 +6,13 @@
   border: #70ba2c 1px solid;
   margin: 20px 0 0 0;
   padding: 0 5px;
+
+  &__condominium {
+    color: #e6855e;
+    border-color: #e6855e;
+  }
+}
+
+.apartment__name {
+  margin: 10px 0;
 }

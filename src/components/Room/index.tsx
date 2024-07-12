@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { FavoriteButton } from "@/components/atoms/FavoriteButton";
 import { ContactButton } from "@/components/atoms/ContactButton";
-import { Link } from "@/components/atoms/Link"
+import { Link } from "@/components/atoms/Link";
+import { CheckBox2 } from "../atoms/CheckBox2";
 import Image from "next/image";
 import styles from "./index.module.scss";
 
@@ -9,13 +10,12 @@ type Props = {
   isNew?: boolean;
   floor: number;
   rent: number;
-  management:number;
+  management: number;
   deposit: number;
   reward: number | string;
   occupation: string;
   layout: number;
 };
-// 関数コンポーネントであることを明示、propsの型を渡せるように　※明示しなくても可
 export const Room: FC<Props> = ({
   isNew = false,
   floor,
@@ -26,7 +26,6 @@ export const Room: FC<Props> = ({
   occupation,
   layout,
 }) => {
-  // 括弧を使用することで、JSXのブロック全体が1つの式として扱われ、改行があっても正しく解釈される
   return (
     <tbody className={styles.room__table__body}>
       <tr>
@@ -36,8 +35,7 @@ export const Room: FC<Props> = ({
               <p className={styles.new__inner}>新着</p>
             </div>
           )}
-          {/* useStateでチェックボックスにチェックを入れたら、新着が着くように */}
-          <input type="checkbox" className={styles.checkbox} />
+          <CheckBox2 />
         </td>
         <td className={styles.room__wrapper}>
           <Image
@@ -69,7 +67,6 @@ export const Room: FC<Props> = ({
           {layout}㎡
         </td>
         <td>
-          {/* お問い合わせ有料ボタンもｐｒｏｐｓで作ってみる */}
           <FavoriteButton />
         </td>
         <td>

@@ -31,24 +31,6 @@ const Home: NextPage = () => {
     { id: 4, name: "三郎", prefecture: "福井県", age: 22, height: 170 },
   ];
 
-  const users = [
-    { name: "John", age: 30 },
-    { name: "Jane", age: 25 },
-    { name: "Jack", age: 35 }
-];
-
-// 例: `extractProperty(users, "name")` -> ["John", "Jane", "Jack"]
-
-const extractProperty = users.map((user) => user.name)
-  console.log(extractProperty)
-
-  const numbers = [10, 5, 20, 3, 7];
-
-// 例: [10, 5, 20, 3, 7] -> 3
-
-console.log(Math.min(...numbers))
-   
-
   const [count, setCount] = useState(0);
 
   const plusClick = () => setCount(count + 1);
