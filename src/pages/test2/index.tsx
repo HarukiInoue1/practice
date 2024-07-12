@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 type Person = { name: string; age: number; note: string; registerDate: string };
 
 const Test100: NextPage = () => {
+  console.log("レンダリング")
   const [personList, setPersonList] = useState<Person[]>([]);
 
   useEffect(() => {
