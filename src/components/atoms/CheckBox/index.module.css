@@ -1,0 +1,10 @@
+.container {
+  display: inline;
+  font-size: 16px;
+  margin-right: 5px;
+  white-space: nowrap;
+}
+.container__input {
+  margin-right: 9px;
+  accent-color: #000;
+}/*# sourceMappingURL=index.module.css.map */

@@ -1,0 +1,10 @@
+.favorite__btn {
+  border: 1px solid #e0e0e0;
+  border-bottom: 3px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 5px 2px;
+  font-weight: bold;
+}
+.favorite__btn__text {
+  color: #fb8e8c;
+}/*# sourceMappingURL=index.module.css.map */

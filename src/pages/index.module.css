@@ -1,0 +1,16 @@
+.container {
+  color: green;
+  font-size: 50px;
+}
+.container__text1 {
+  color: red;
+}
+.container__text2 {
+  font-size: 25px;
+}
+.container__text3 {
+  background-color: gray;
+}
+.container__text4 {
+  background-color: blue;
+}/*# sourceMappingURL=index.module.css.map */

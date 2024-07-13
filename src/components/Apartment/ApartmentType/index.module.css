@@ -1,0 +1,16 @@
+.apartment__type {
+  display: inline-block;
+  font-size: 1rem;
+  color: #70ba2c;
+  border: #70ba2c 1px solid;
+  margin: 20px 0 0 0;
+  padding: 0 5px;
+}
+.apartment__type__condominium {
+  color: #e6855e;
+  border-color: #e6855e;
+}
+
+.apartment__name {
+  margin: 10px 0;
+}/*# sourceMappingURL=index.module.css.map */

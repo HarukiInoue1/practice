@@ -1,0 +1,20 @@
+.apartment__info {
+  border-top: 1px dotted #c2c2c2;
+  border-bottom: 1px dotted #c2c2c2;
+  display: flex;
+}
+.apartment__info__child {
+  flex-grow: 1;
+  padding: 1rem;
+  margin: 5px 0;
+}
+.apartment__info__child:first-child {
+  padding-left: 0;
+  border-right: 1px dotted #c2c2c2;
+}
+.apartment__info__child:last-child {
+  border-left: 1px dotted #c2c2c2;
+}
+.apartment__info__child p {
+  margin-bottom: 0.5rem;
+}/*# sourceMappingURL=index.module.css.map */
