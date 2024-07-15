@@ -1,13 +1,14 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { FavoriteButton } from "@/components/atoms/FavoriteButton";
 import { ContactButton } from "@/components/atoms/ContactButton";
 import { Link } from "@/components/atoms/Link";
 import { CheckBox2 } from "../atoms/CheckBox2";
 import Image from "next/image";
 import styles from "./index.module.scss";
+import cn from "classnames";
 
 type Props = {
-  isNew?: boolean;
+  // isNew?: boolean;
   floor: number;
   rent: number;
   management: number;
@@ -17,7 +18,7 @@ type Props = {
   layout: number;
 };
 export const Room: FC<Props> = ({
-  isNew = false,
+  // isNew = false,
   floor,
   rent,
   management,
@@ -26,16 +27,25 @@ export const Room: FC<Props> = ({
   occupation,
   layout,
 }) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChecked = () => setIsChecked(!isChecked);
+
   return (
     <tbody className={styles.room__table__body}>
       <tr>
         <td className={styles.new__wrapper}>
-          {isNew && (
-            <div className={styles.new}>
-              <p className={styles.new__inner}>新着</p>
-            </div>
-          )}
-          <CheckBox2 />
+          <div className={cn({ [styles.new]: isChecked })}>
+            <p
+              className={cn(styles.new__none, {
+                [styles.new__inner]: isChecked,
+              })}
+            >
+              新着
+            </p>
+          </div>
+          {/* isCheckedはbooleanでuseStateで管理しているのでfalseが初期値、onCheckedChangeはStateとcんで管理 */}
+          <CheckBox2 isChecked={isChecked} onCheckedChange={handleChecked} />
         </td>
         <td className={styles.room__wrapper}>
           <Image

@@ -24,7 +24,11 @@
   top: 0;
   left: 0;
 }
+.room__table__body .new__wrapper .new__none {
+  display: none;
+}
 .room__table__body .new__wrapper .new__inner {
+  display: block;
   padding-top: 5px;
   color: #fff;
   transform: rotate(-45deg);

@@ -15,17 +15,19 @@ export const Informations = () => {
     address: "東京都新宿区百人町3",
   };
 
+  const {status, story, accesses, address} = propertyData;
+
   return (
     <>
       <div className={styles.apartment__info}>
         <div className={styles.apartment__info__child}>
-          <PropertyAddress address={propertyData.address} />
+          <PropertyAddress address={address} />
         </div>
         <div className={styles.apartment__info__child}>
-          <PropertyAccess accesses={propertyData.accesses} />
+          <PropertyAccess accesses={accesses} />
         </div>
         <div className={styles.apartment__info__child}>
-          <PropertyType story={propertyData.story} status={propertyData.status} />
+          <PropertyType story={story} status={status} />
         </div>
       </div>
     </>

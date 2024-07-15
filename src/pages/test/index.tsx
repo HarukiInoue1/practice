@@ -31,6 +31,28 @@ const Home: NextPage = () => {
     { id: 4, name: "三郎", prefecture: "福井県", age: 22, height: 170 },
   ];
 
+  // type Members = {
+  //   name: string;
+  //   age: number;
+  //   gender: "male" | "female";
+  // }[];
+
+  // const members: Members = [
+  //   { name: "松井", age: 39, gender: "male" },
+  //   { name: "今田", age: 34, gender: "female" },
+  //   { name: "鈴木", age: 24, gender: "male" },
+  //   { name: "山田", age: 56, gender: "male" },
+  //   { name: "田中", age: 89, gender: "female" },
+  // ];
+
+  // // Members型を継承した配列 T を引数に取り、任意の型配列 U を返す(返り値)関数の型
+  // type GetName<T extends Members, U> = (array: T) => U[];
+  // // = (array: Members) => string[]
+  // const getName: GetName<Members, string> = (array) => {
+  //   // 分割代入
+  //   return members.map(({ name }) => name);
+  // };
+
   const [count, setCount] = useState(0);
 
   const plusClick = () => setCount(count + 1);
