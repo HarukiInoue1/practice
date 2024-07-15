@@ -44,7 +44,7 @@ export const Room: FC<Props> = ({
               新着
             </p>
           </div>
-          {/* isCheckedはbooleanでuseStateで管理しているのでfalseが初期値、onCheckedChangeはStateとcんで管理 */}
+          {/* isCheckedはbooleanでuseStateで管理しているのでfalseが初期値、onCheckedChangeはStateとcnで管理 */}
           <CheckBox2 isChecked={isChecked} onCheckedChange={handleChecked} />
         </td>
         <td className={styles.room__wrapper}>
