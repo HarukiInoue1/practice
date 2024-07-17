@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { usePersonList } from "./hooks/usePersonList";
 
 const Test100: NextPage = () => {
-  const { personList } = usePersonList();
+  const personList = usePersonList();
   console.log(personList);
   return (
     <div>

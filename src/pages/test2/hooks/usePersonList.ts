@@ -16,5 +16,5 @@ export const usePersonList = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  return { personList };
+  return personList;
 };

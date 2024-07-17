@@ -69,6 +69,7 @@ const Home: NextPage = () => {
         </button>
         <button onClick={() => router.push("/login")}>ログインページへ</button>
         <button onClick={() => router.push("/test")}>テストページへ</button>
+        <button onClick={() => router.push("/test2")}>テストページ2へ</button>
         <button onClick={() => router.push("/suumo")}>Suumoページへ</button>
         {students.map((elem) => (
           <div key={elem.id}>
