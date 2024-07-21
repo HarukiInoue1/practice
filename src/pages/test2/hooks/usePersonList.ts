@@ -9,6 +9,7 @@ export const usePersonList = () => {
   useEffect(() => {
     axios
       .get("https://umayadia-apisample.azurewebsites.net/api/persons")
+      // リクエストが成功したら、then内でコールバック関数が実行され、引数としてレスポンスオブジェクトが渡される
       .then((res) => {
         console.log(res);
         setPersonList(res.data.data);
@@ -18,3 +19,13 @@ export const usePersonList = () => {
 
   return personList;
 };
+
+// 以下レスポンスオブジェクトの構造
+// {
+//   "data": {}, // サーバーから返されたデータ
+//   "status": 200, // HTTPステータスコード
+//   "statusText": "OK", // HTTPステータステキスト
+//   "headers": {}, // レスポンスヘッダー
+//   "config": {}, // リクエストの設定
+//   "request": {} // リクエストオブジェクト（ブラウザ環境では非表示の場合あり）
+// }
