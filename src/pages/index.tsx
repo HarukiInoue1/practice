@@ -1,7 +1,6 @@
 import Head from "next/head";
 import styles from "./index.module.scss";
 import cn from "classnames";
-import { CheckBox } from "@/components/atoms/CheckBox";
 import { NextPage } from "next";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -20,7 +19,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
-        <CheckBox labelName="test" />
         こんにちは
         <div className={styles.container__text1}>test</div>
         <div
@@ -35,9 +33,12 @@ const Home: NextPage = () => {
         <button onClick={() => setIsEnableText3(!isEnableText3)}>
           テキスト３有効化ボタン
         </button>
-        <button onClick={() => router.push("/test")}>テストページへ</button>
-        <button onClick={() => router.push("/test2")}>テストページ2へ</button>
+        {/* <button onClick={() => router.push("/test")}>テストページへ</button> */}
+        {/* <button onClick={() => router.push("/test2")}>テストページ2へ</button> */}
         <button onClick={() => router.push("/test3")}>テストページ3へ</button>
+        <button onClick={() => router.push("/test4")}>テストページ4へ</button>
+        <button onClick={() => router.push("/test5")}>テストページ5へ</button>
+        <button onClick={() => router.push("/test6")}>テストページ6へ</button>
         <button onClick={() => router.push("/suumo")}>Suumoページへ</button>
       </div>
     </>

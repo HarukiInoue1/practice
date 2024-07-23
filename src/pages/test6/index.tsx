@@ -1,42 +1,43 @@
 import { apiClient } from "@/config/axiosInstance";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 type Books = {
   author: string;
   title: string;
 };
 
-const Test3: NextPage = () => {
-  const [bookList, setBookList] = useState<Books[]>([]);
+const Test6: NextPage = () => {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
 
   const router = useRouter();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    apiClient.get("/books").then((res) => {
-      setBookList(res.data);
-    });
-  }, []);
+  const { data, isLoading, refetch } = useQuery<Books[]>("books", async () => {
+    const res = await apiClient.get("/books");
+    return res.data;
+  });
 
-  const postBook = () => {
-    apiClient
-      .post("/books", {
-        author: author,
-        title: title,
-      })
-      // 更新関数を使ってres.dataをbookListに追加する(配列型)=投稿時に再レンダリングさせる
-      .then((res) => setBookList([...bookList, res.data]));
-  };
-
-  // eの型定義、何故必要なのか
+  const { mutate } = useMutation(
+    async (newBook: Books) => {
+      const res = await apiClient.post("/books", newBook);
+    },
+    {
+      onSuccess: () => {
+        refetch();
+      },
+    }
+  );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // デフォルトの動作(フォーム送信時にページリロード)を防ぐ
-    postBook();
+    mutate({ author, title });
   };
+
+  if (isLoading) return <div>ロード中</div>;
 
   return (
     <>
@@ -45,8 +46,6 @@ const Test3: NextPage = () => {
           <label htmlFor="author" style={{ marginRight: "3rem" }}>
             著者
           </label>
-          {/* onChangeは、フォーム内のエレメント（要素）の内容が変更された時に起こイベント処理 */}
-          {/* onChange実行時にSyntheticBaseEvent内のtarget>valueに入力された値が格納される */}
           <input
             type="text"
             id="author"
@@ -71,7 +70,7 @@ const Test3: NextPage = () => {
       <button onClick={() => router.push("/")}>TOPページへ</button>
 
       <div>
-        {bookList.map((elem, index) => (
+        {data?.map((elem, index) => (
           <div key={index}>
             <p>著者：{elem.author}</p>
             <p>タイトル：{elem.title}</p>
@@ -82,4 +81,4 @@ const Test3: NextPage = () => {
   );
 };
 
-export default Test3;
+export default Test6;

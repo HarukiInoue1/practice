@@ -1,7 +1,6 @@
 import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-// import { useState } from "react";
 import { useQuery } from "react-query";
 
 type Person = { name: string; age: number; note: string; registerDate: string };
@@ -9,26 +8,36 @@ type Person = { name: string; age: number; note: string; registerDate: string };
 const Test4: NextPage = () => {
   const router = useRouter();
 
-  const getPersonList = async () => {
+  const fetchPersonList = async () => {
     const res = await axios.get(
       "https://umayadia-apisample.azurewebsites.net/api/persons"
     );
     return res.data.data;
   };
-  
-  const {data, isLoading, error,isSuccess} = useQuery<Person[]>("persons", getPersonList);
+
+  const { data, isLoading, isError, error, isSuccess } = useQuery<Person[]>(
+    "persons",
+    fetchPersonList,
+    // リフェッチ機能オフ
+    { refetchOnWindowFocus: false }
+  );
+
+  console.log(error);
 
   // ローディング中
   if (isLoading) return <div>ろーどちゅう</div>;
 
   // エラー
-  if (error) return <div>エラー</div>;
-  console.log(isSuccess);
+  if (isError)
+    return (
+      <div>
+        {error.name} : {error.message}
+      </div>
+    );
   return (
     <>
       <div>
         <button onClick={() => router.push("/")}>TOPページへ</button>
-        {/* <div>{isSuccess ? "データの取得に成功しました" : "データの取得に失敗しました"}</div> */}
         {/* useQueryから取得するdataの型はisLoading、errorも含むため、Person[] | undefinedとなる？*/}
         {data?.map((elem, index) => (
           <div key={index}>
