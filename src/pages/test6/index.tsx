@@ -2,7 +2,7 @@ import { apiClient } from "@/config/axiosInstance";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 type Books = {
   author: string;
@@ -14,7 +14,6 @@ const Test6: NextPage = () => {
   const [title, setTitle] = useState("");
 
   const router = useRouter();
-  const queryClient = useQueryClient();
 
   const { data, isLoading, refetch } = useQuery<Books[]>("books", async () => {
     const res = await apiClient.get("/books");
