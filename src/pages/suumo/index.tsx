@@ -2,13 +2,11 @@ import Head from "next/head";
 import styles from "./index.module.scss";
 import "ress";
 import Image from "next/image";
-import { Room } from "@/components/Room";
-import { Apartment } from "@/components/Apartment";
+import { Room } from "@/components/templates/Room";
+import { Apartment } from "@/components/templates/Apartment";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
-  const router = useRouter();
 
   return (
     <>

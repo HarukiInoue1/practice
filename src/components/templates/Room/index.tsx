@@ -2,13 +2,12 @@ import { FC, useState } from "react";
 import { FavoriteButton } from "@/components/atoms/FavoriteButton";
 import { ContactButton } from "@/components/atoms/ContactButton";
 import { Link } from "@/components/atoms/Link";
-import { CheckBox2 } from "../atoms/CheckBox2";
+import { CheckBox2 } from "@/components/atoms/CheckBox2";
+import { New } from "@/components/atoms/New";
 import Image from "next/image";
 import styles from "./index.module.scss";
-import cn from "classnames";
 
 type Props = {
-  // isNew?: boolean;
   floor: number;
   rent: number;
   management: number;
@@ -18,7 +17,6 @@ type Props = {
   layout: number;
 };
 export const Room: FC<Props> = ({
-  // isNew = false,
   floor,
   rent,
   management,
@@ -35,15 +33,7 @@ export const Room: FC<Props> = ({
     <tbody className={styles.room__table__body}>
       <tr>
         <td className={styles.new__wrapper}>
-          <div className={cn({ [styles.new]: isChecked })}>
-            <p
-              className={cn(styles.new__none, {
-                [styles.new__inner]: isChecked,
-              })}
-            >
-              新着
-            </p>
-          </div>
+          <New isChecked={isChecked}/>
           {/* isCheckedはbooleanでuseStateで管理しているのでfalseが初期値、onCheckedChangeはStateとcnで管理 */}
           <CheckBox2 isChecked={isChecked} onCheckedChange={handleChecked} />
         </td>

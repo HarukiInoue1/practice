@@ -1,19 +1,34 @@
 import ComponentA from "@/components/templates/ComponentA";
-import { AnotherCountProvider } from "@/context/AnotherCountContext";
-import { CountProvider } from "@/context/CountContext";
+import { createContext, useState } from "react";
 
-function contextApp() {
+// コンテキストオブジェクトの作成
+
+const defaultValue = {
+  count: 100,
+  // 空の関数
+  setCount: () => {},
+};
+
+export const UserCount = createContext(defaultValue);
+
+
+
+const contextApp = () => {
+  const [count, setCount] = useState(100);
+
+  const value = {
+    count,
+    setCount,
+  };
+
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Learn useContext</h1>
-      {/* 子コンポーネントにデータを渡す */}
-      <CountProvider>
-        <AnotherCountProvider>
-          <ComponentA />
-        </AnotherCountProvider>
-      </CountProvider>
+      <UserCount.Provider value={value}>
+        <ComponentA />
+      </UserCount.Provider>
     </div>
   );
-}
+};
 
 export default contextApp;

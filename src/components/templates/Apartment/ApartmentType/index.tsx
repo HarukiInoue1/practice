@@ -1,10 +1,14 @@
 import styles from "./index.module.scss";
-import { FC } from "react";
+import { useContext } from "react";
 import cn from "classnames";
+import { ApartmentContext } from "@/context/ApartmentContext";
 
-export const ApartmentType: FC<{ apartmentType: boolean }> = ({
-  apartmentType = true,
-}) => {
+export const ApartmentType = () => {
+  const context = useContext(ApartmentContext);
+
+  console.log(context);
+
+  const { apartmentType } = context;
   return (
     <>
       <p
@@ -18,9 +22,10 @@ export const ApartmentType: FC<{ apartmentType: boolean }> = ({
   );
 };
 
-export const ApartmentName: FC<{ apartmentName: string }> = ({
-  apartmentName,
-}) => {
+export const ApartmentName = () => {
+  const context = useContext(ApartmentContext);
+
+  const { apartmentName } = context;
   return (
     <>
       <h2 className={styles.apartment__name}>{apartmentName}</h2>

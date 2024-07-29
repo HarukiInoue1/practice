@@ -1,0 +1,39 @@
+.room {
+  margin-top: 30px;
+
+  &__wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #e0e0e0;
+    margin: 50px;
+  }
+
+  &__table {
+    &__body {
+      display: table-row-group;
+      border-bottom: 1px solid #d9d9d9;
+
+      p {
+        text-align: left;
+      }
+
+      .new__wrapper {
+        position: relative;
+      }
+
+      &__text1 {
+        color: #f9315e;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      &__text2 {
+        text-align: left;
+        color: #fff;
+        background-color: gray;
+        padding: 2px;
+      }
+    }
+  }
+}
