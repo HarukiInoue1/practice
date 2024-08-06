@@ -1,4 +1,5 @@
 import { apiClient } from "@/config/axiosInstance";
+import { useGlobalContext } from "@/hooks";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
@@ -14,6 +15,8 @@ const Test3: NextPage = () => {
   const [title, setTitle] = useState("");
 
   const router = useRouter();
+
+  const { count, setCount } = useGlobalContext();
 
   useEffect(() => {
     apiClient.get("/books").then((res) => {
@@ -78,6 +81,10 @@ const Test3: NextPage = () => {
           </div>
         ))}
       </div>
+
+      <p>{count}</p>
+      <button onClick={() => setCount(count - 1)}>-</button>
+      <button onClick={() => router.push("/test7")}>ページ７へ</button>
     </>
   );
 };

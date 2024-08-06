@@ -1,14 +1,16 @@
-import { UserCount } from "@/pages/test7";
+import { UserCountContext } from "@/pages/test7";
+import { useRouter } from "next/router";
 import { useContext } from "react";
 
 const ComponentC = () => {
-  const {count, setCount} = useContext(UserCount);
+  const count = useContext(UserCountContext);
+  const router = useRouter();
 
   return (
     <div>
       <p>Component C</p>
       <p>{count}</p>
-      <button onClick={() => setCount(count +1)}>+</button>
+      <button onClick={() => router.push("/test3")}>ページ３へ</button>
     </div>
   );
 };

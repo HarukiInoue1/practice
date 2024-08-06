@@ -1,32 +1,16 @@
 import ComponentA from "@/components/templates/ComponentA";
-import { createContext, useState } from "react";
-
-// コンテキストオブジェクトの作成
-
-const defaultValue = {
-  count: 100,
-  // 空の関数
-  setCount: () => {},
-};
-
-export const UserCount = createContext(defaultValue);
+import React, { createContext } from "react";
 
 
+export const UserCountContext = createContext<number>(0);
 
 const contextApp = () => {
-  const [count, setCount] = useState(100);
-
-  const value = {
-    count,
-    setCount,
-  };
-
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Learn useContext</h1>
-      <UserCount.Provider value={value}>
+      <UserCountContext.Provider value={100}>
         <ComponentA />
-      </UserCount.Provider>
+      </UserCountContext.Provider>
     </div>
   );
 };

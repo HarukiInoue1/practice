@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 
-const fetchUsers = async () => {
+export const fetchUsers = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
   return res.json();
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import User from './user.tsx';
+import User from './user';
 
 const queryClient = new QueryClient();
 
