@@ -19,6 +19,7 @@ type Props = {
 
 const GlobalContext = createContext<GlobalContextType>({} as GlobalContextType);
 
+// プロバイダー、チルドレンに渡す
 export const GlobalContextProvider: FC<Props> = ({ children }) => {
   const [count, setCount] = useState(0);
 
@@ -29,4 +30,5 @@ export const GlobalContextProvider: FC<Props> = ({ children }) => {
   );
 };
 
+// コンシューマー(useContext)、カスタムフックを呼び出すことで子要素のどこでも使える
 export const useGlobalContext = () =>  useContext(GlobalContext);
