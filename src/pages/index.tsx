@@ -37,8 +37,8 @@ const Home: NextPage = () => {
         {/* <button onClick={() => router.push("/test2")}>テストページ2へ</button> */}
         <button onClick={() => router.push("/test3")}>テストページ3へ</button>
         <button onClick={() => router.push("/test4")}>テストページ4へ</button>
-        <button onClick={() => router.push("/test5")}>テストページ5へ</button>
-        <button onClick={() => router.push("/test6")}>テストページ6へ</button>
+        <button onClick={() => router.push("/test7")}>テストページ7へ</button>
+        <button onClick={() => router.push("/test8")}>テストページ8へ</button>
         <button onClick={() => router.push("/suumo")}>Suumoページへ</button>
       </div>
     </>
