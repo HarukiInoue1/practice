@@ -80,7 +80,6 @@ const Home: NextPage = () => {
         >
           sample text
         </div>
-        <div className=""></div>
         <h1 className={styles.container__test}>テスト用</h1>
         <button
           onClick={() => router.push("../")}

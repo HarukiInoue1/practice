@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
@@ -15,7 +15,10 @@ const Test4: NextPage = () => {
     return res.data.data;
   };
 
-  const { data, isLoading, isError, error, isSuccess } = useQuery<Person[]>(
+  const { data, isLoading, isError, error, isSuccess } = useQuery<
+    Person[],
+    AxiosError
+  >(
     "persons",
     fetchPersonList,
     // リフェッチ機能オフ

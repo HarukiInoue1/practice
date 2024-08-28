@@ -42,6 +42,7 @@ const Test8: NextPage = () => {
     { onSuccess: () => refetch() }
   );
 
+  // 本の編集
   const { mutate: updateBook } = useMutation(
     async (updateBook: Book) => {
       if (updateBook.id) {
